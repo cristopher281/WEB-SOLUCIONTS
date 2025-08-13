@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WEB-SOLUCIONTS — Sistemas Web, Sitios y Chatbots IA</title>
+  <meta name="description" content="WEB-SOLUCIONTS: desarrollo de sistemas web, sitios modernos y chatbots de asistencia virtual con IA.">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-dark">
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="WEB-SOLUCIONTS">
+      <img src="assets/logo.png" alt="Logo WEB-SOLUCIONTS" class="brand__img" onerror="this.style.display='none'">
+      <span class="brand__text">WEB-SOLUCIONTS</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <button class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
+      <ul id="menu" class="nav__list">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a class="btn btn--outline" href="contacto.html">Cotizar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__glow"></div>
+    <div class="hero__content container">
+      <h1 class="hero__title neon">
+        BIENVENIDO A UN MUNDO DONDE TÚ CREAS TU PROPIA WEB
+      </h1>
+      <p class="hero__subtitle">
+        Empresa enfocada en <strong>desarrollo web</strong>, <strong>sitios</strong>, 
+        <strong>sistemas</strong> y <strong>chatbots de asistencia virtual con inteligencia artificial</strong>.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#servicios">Ver Servicios</a>
+        <a class="btn btn--ghost" href="contacto.html">Solicitar Cotización</a>
+      </div>
+      <div class="hero__metrics">
+        <div><span class="metric__num" data-count="99">0</span>% Satisfacción</div>
+        <div><span class="metric__num" data-count="24">0</span>/7 Soporte</div>
+        <div><span class="metric__num" data-count="3">0</span> Sem. tiempo de entrega</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="section container">
+    <h2 class="section__title">Servicios</h2>
+    <p class="section__desc">Soluciones a medida con tecnología moderna y enfoque en resultados.</p>
+    <div class="grid cards">
+      <article class="card reveal">
+        <h3>Desarrollo Web a Medida</h3>
+        <p>Aplicaciones web rápidas, seguras y escalables, integradas con tus procesos.</p>
+        <a class="card__link" href="desarrollo-web.html">Ver detalles →</a>
+      </article>
+      <article class="card reveal">
+        <h3>Sitios & Sistemas</h3>
+        <p>Corporativos, e-commerce y sistemas internos (CRM/ERP) listos para crecer.</p>
+        <a class="card__link" href="sistemas.html">Ver detalles →</a>
+      </article>
+      <article class="card reveal">
+        <h3>Chatbots con IA</h3>
+        <p>Asistentes virtuales 24/7 para soporte, ventas y atención al cliente.</p>
+        <a class="card__link" href="chatbots-ia.html">Ver detalles →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos" class="section section--alt container">
+    <h2 class="section__title">Proyectos</h2>
+    <p class="section__desc">Preparamos el espacio para tus casos de éxito. Sube tus capturas cuando quieras.</p>
+    <div class="grid gallery">
+      <!-- Placeholders (reemplázalos por tus imágenes) -->
+      <figure class="gallery__item reveal"><div class="ph"></div><figcaption>Sistema de reservas</figcaption></figure>
+      <figure class="gallery__item reveal"><div class="ph"></div><figcaption>Portal académico</figcaption></figure>
+      <figure class="gallery__item reveal"><div class="ph"></div><figcaption>E-commerce</figcaption></figure>
+    </div>
+    <p class="center mt-2"><a href="proyectos.html" class="btn btn--outline">Ver todos los proyectos</a></p>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="section container">
+    <h2 class="section__title">Sobre WEB-SOLUCIONTS</h2>
+    <p class="section__desc">
+      Combinamos diseño, ingeniería y datos para construir sistemas web que impulsan tu negocio.
+      Trabajamos con metodologías ágiles, despliegue continuo y estándares de seguridad.
+    </p>
+    <ul class="bullets reveal">
+      <li>Arquitecturas modernas (Node/Django, React/Vue).</li>
+      <li>Infraestructura en la nube (AWS, Vercel) con SSL y CI/CD.</li>
+      <li>SEO técnico, rendimiento y accesibilidad desde el día uno.</li>
+    </ul>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section container">
+    <h2 class="section__title">Contacto</h2>
+    <p class="section__desc">Escríbenos y te respondemos pronto.</p>
+    <form class="form reveal" action="mailto:vallecristopher102@gmail.com" method="POST" enctype="text/plain">
+      <div class="form__row">
+        <input required name="nombre" placeholder="Tu nombre" />
+        <input required type="email" name="email" placeholder="Tu correo" />
+      </div>
+      <textarea required name="mensaje" rows="5" placeholder="Cuéntanos lo que necesitas"></textarea>
+      <div class="form__actions">
+        <button class="btn btn--primary" type="submit">Enviar correo</button>
+        <a id="wpa" class="btn btn--ghost" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      </div>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <p>© <span id="year"></span> WEB-SOLUCIONTS. Todos los derechos reservados.</p>
+      <nav class="footer__nav">
+        <a href="desarrollo-web.html">Desarrollo Web</a>
+        <a href="sistemas.html">Sitios & Sistemas</a>
+        <a href="chatbots-ia.html">Chatbots IA</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a class="whatsapp" target="_blank" rel="noopener"
+     href="https://wa.me/50583574754?text=Hola%20WEB-SOLUCIONTS,%20quiero%20cotizar%20un%20sistema%20web.">WhatsApp</a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

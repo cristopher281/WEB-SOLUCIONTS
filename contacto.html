@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto — WEB-SOLUCIONTS</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-dark inner">
+<header class="sub-header">
+  <a class="brand" href="index.html">WEB-SOLUCIONTS</a>
+</header>
+
+<main class="container section">
+  <h1 class="section__title neon">Contacto</h1>
+  <p class="section__desc">Completa el formulario o escríbenos por WhatsApp.</p>
+
+  <form class="form reveal" action="mailto:vallecristopher102@gmail.com" method="POST" enctype="text/plain">
+    <div class="form__row">
+      <input required name="nombre" placeholder="Tu nombre" />
+      <input required type="email" name="email" placeholder="Tu correo" />
+    </div>
+    <input name="asunto" placeholder="Asunto (opcional)" />
+    <textarea required name="mensaje" rows="6" placeholder="Mensaje"></textarea>
+    <div class="form__actions">
+      <button class="btn btn--primary" type="submit">Enviar correo</button>
+      <a class="btn btn--ghost" target="_blank" rel="noopener"
+         href="https://wa.me/50583574654?text=Hola%20WEB-SOLUCIONTS,%20quiero%20cotizar%20un%20proyecto.">WhatsApp</a>
+    </div>
+  </form>
+</main>
+
+<footer class="site-footer"><div class="container">© <span id="year"></span> WEB-SOLUCIONTS</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
