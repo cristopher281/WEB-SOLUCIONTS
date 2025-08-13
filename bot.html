@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bot WEB-SOLUCIONTS Avanzado</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { font-family: Arial, sans-serif; background: #0a0a0a; margin:0; padding:0; }
+  #bot-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background: #00fff7;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 25px #00fff7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-size: 28px;
+    color: #0a0a0a;
+  }
+  #bot-btn::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top:0; left:0;
+    box-shadow: 0 0 20px #00fff7;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(0.9); opacity:0.7; }
+    50% { transform: scale(1.1); opacity:1; }
+    100% { transform: scale(0.9); opacity:0.7; }
+  }
+  #chat-window {
+    position: fixed;
+    bottom: 120px;
+    right: 30px;
+    width: 350px;
+    max-height: 550px;
+    background: linear-gradient(135deg, #0b0b0b, #1a1a1a);
+    border-radius: 25px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 0 30px #00fff7;
+    z-index: 999;
+  }
+  #chat-header {
+    background: #00fff7;
+    color: #0a0a0a;
+    padding: 18px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+  }
+  #chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  .message {
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    border-radius: 15px;
+    max-width: 80%;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .user { background: #111; align-self: flex-end; color: #fff; }
+  .bot { background: #00fff7; color: #000; align-self: flex-start; }
+  #chat-input {
+    display: flex;
+    border-top: 1px solid #00fff7;
+    background:#111;
+  }
+  #chat-input input {
+    flex: 1;
+    padding: 12px;
+    border:none;
+    outline:none;
+    background:#111;
+    color:#fff;
+    font-size:14px;
+  }
+  #chat-input button {
+    background:#00fff7;
+    border:none;
+    padding: 0 18px;
+    cursor:pointer;
+    font-size: 14px;
+  }
+  #quick-replies {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding: 10px;
+  }
+  .quick-btn {
+    background:#00fff7;
+    border:none;
+    border-radius:12px;
+    padding:6px 12px;
+    cursor:pointer;
+    color:#000;
+    font-size:13px;
+    transition:0.3s;
+  }
+  .quick-btn:hover {
+    background:#00fff7;
+    box-shadow: 0 0 10px #00fff7;
+  }
+</style>
+</head>
+<body>
+<!-- Bot flotante -->
+<div id="bot-btn">💬</div>
+<!-- Ventana de chat -->
+<div id="chat-window">
+  <div id="chat-header">WEB-SOLUCIONTS Bot</div>
+  <div id="chat-messages"></div>
+  <div id="quick-replies"></div>
+  <div id="chat-input">
+    <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
+    <button id="send-btn">Enviar</button>
+    <button id="voice-btn">🎤</button>
+  </div>
+</div>
+<script>
+const botBtn = document.getElementById('bot-btn');
+const chatWindow = document.getElementById('chat-window');
+const sendBtn = document.getElementById('send-btn');
+const userInput = document.getElementById('user-input');
+const chatMessages = document.getElementById('chat-messages');
+const quickReplies = document.getElementById('quick-replies');
+const voiceBtn = document.getElementById('voice-btn');
+let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+chatHistory.forEach(msg => addMessage(msg.text, msg.sender, false));
+botBtn.addEventListener('click', () => {
+  if(chatWindow.style.display === 'flex') {
+    gsap.to(chatWindow, {duration:0.5, y:50, opacity:0, onComplete:()=>{chatWindow.style.display='none';}});
+  } else {
+    chatWindow.style.display = 'flex';
+    gsap.fromTo(chatWindow, {y:50, opacity:0}, {duration:0.5, y:0, opacity:1});
+  }
+});
+function addMessage(text, sender, save=true){
+  const div = document.createElement('div');
+  div.textContent = text;
+  div.classList.add('message', sender);
+  chatMessages.appendChild(div);
+  gsap.to(div, {opacity:1, y:0, duration:0.5});
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  if(save){
+    chatHistory.push({text, sender});
+    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+  }
+}
+function botResponse(msg){
+  let reply = "Lo siento, no entiendo. Puedes personalizar esta respuesta aquí.";
+  addMessage(reply, 'bot');
+  showQuickReplies(["Ver precios","Quiero una demo","Contacto"]);
+  speak(reply);
+}
+function showQuickReplies(options){
+  quickReplies.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.textContent = opt;
+    btn.classList.add('quick-btn');
+    btn.onclick = ()=>{ addMessage(opt,'user'); botResponse(opt); quickReplies.innerHTML=''; }
+    quickReplies.appendChild(btn);
+  });
+}
+sendBtn.addEventListener('click', () => {
+  const text = userInput.value.trim();
+  if(text){
+    addMessage(text, 'user');
+    userInput.value='';
+    setTimeout(()=>botResponse(text), 500);
+  }
+});
+userInput.addEventListener('keypress', (e)=>{ if(e.key==='Enter') sendBtn.click(); });
+function speak(text){
+  if('speechSynthesis' in window){
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang='es-ES';
+    window.speechSynthesis.speak(utter);
+  }
+}
+voiceBtn.addEventListener('click', ()=>{
+  if('webkitSpeechRecognition' in window){
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang='es-ES';
+    recognition.start();
+    recognition.onresult = (event)=>{
+      const speech = event.results[0][0].transcript;
+      addMessage(speech,'user');
+      botResponse(speech);
+    }
+  } else {
+    alert("Tu navegador no soporta reconocimiento de voz");
+  }
+});
+</script>
+</body>
+</html>

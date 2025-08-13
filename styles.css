@@ -18,6 +18,13 @@ body{margin:0;font-family:system-ui,Segoe UI,Arial,sans-serif;background:radial-
 .site-header,.sub-header{position:sticky;top:0;z-index:50;background:rgba(11,21,34,.7);backdrop-filter:blur(8px);border-bottom:1px solid #1f2d44}
 .site-header{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem}
 .sub-header{display:flex;align-items:center;justify-content:space-between;padding:1rem}
+.sub-header .nav {
+  display: flex;
+  gap: 1.2rem;
+}
+.sub-header .nav .btn {
+  margin-left: 1.2rem;
+}
 
 .brand{display:flex;align-items:center;gap:.6rem;color:var(--text);text-decoration:none;font-weight:800;letter-spacing:.5px}
 .brand__img{height:32px;filter:drop-shadow(0 0 10px rgba(255,216,107,.35))}
@@ -45,6 +52,15 @@ body{margin:0;font-family:system-ui,Segoe UI,Arial,sans-serif;background:radial-
 .cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .card{background:linear-gradient(180deg,#0d1828,#0b1522);border:1px solid #1f2d44;border-radius:16px;padding:1.2rem;box-shadow:0 6px 16px rgba(0,0,0,.25)}
 .card h3{margin-top:0}
+.card__img{
+  width:110px;
+  height:110px;
+  display:block;
+  margin:0 auto 1.2rem auto;
+  object-fit:cover;
+  border-radius:12px;
+  box-shadow:0 2px 12px rgba(113,214,255,.10);
+}
 .card__link{display:inline-block;margin-top:.6rem;color:var(--primary);text-decoration:none}
 .card:hover{box-shadow:0 0 0 1px #27405f, 0 0 24px rgba(113,214,255,.15)}
 
