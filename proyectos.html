@@ -6,9 +6,18 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="theme-dark inner">
+
 <header class="sub-header">
   <a class="brand" href="index.html">WEB-SOLUCIONTS</a>
-  <nav class="nav"><a href="desarrollo-web.html">Desarrollo Web</a><a href="sistemas.html">Sistemas</a><a href="chatbots-ia.html">Chatbots IA</a></nav>
+  <nav class="nav" aria-label="Principal">
+    <button class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
+    <ul id="menu" class="nav__list">
+      <li><a href="desarrollo-web.html">Desarrollo Web</a></li>
+      <li><a href="sistemas.html">Sistemas</a></li>
+      <li><a href="chatbots-ia.html">Chatbots IA</a></li>
+      <li><a class="btn btn--outline" href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main class="container section">
@@ -24,13 +33,39 @@
         <a href="https://cristopher281.github.io/Portafolio-Web/" target="_blank" rel="noopener noreferrer" style="color:var(--primary);text-decoration:underline;">Portafolio personal</a>
       </figcaption>
     </figure>
-    <figure class="gallery__item reveal"><div class="ph"></div><figcaption>Proyecto 2</figcaption></figure>
+    <figure class="gallery__item reveal">
+      <a href="https://cristopher281.github.io/Biblioteca-UML/" target="_blank" rel="noopener noreferrer">
+        <img src="imagen.png/Captura de pantalla 2025-08-13 174621.png" alt="Virtual library interface for UML displaying a navigation menu on the left and a list of books in the main area, set in a clean digital workspace; the environment appears organized and professional with a neutral tone" style="width:100%;height:auto;border-radius:8px;">
+      </a>
+      <figcaption>
+        <a href="https://cristopher281.github.io/Biblioteca-UML/" target="_blank" rel="noopener noreferrer" style="color:var(--primary);text-decoration:underline;">Biblioteca virtual UML</a>
+      </figcaption>
+    </figure>
     <figure class="gallery__item reveal"><div class="ph"></div><figcaption>Proyecto 3</figcaption></figure>
   </div>
 </main>
 
 <footer class="site-footer"><div class="container">© <span id="year"></span> WEB-SOLUCIONTS</div></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+// Menú hamburguesa responsivo
+const navToggle = document.querySelector('.nav__toggle');
+const navList = document.getElementById('menu');
+if(navToggle && navList) {
+  navToggle.addEventListener('click', function() {
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', !expanded);
+    navList.style.display = expanded ? 'none' : 'flex';
+  });
+  // Cierra el menú al hacer click fuera
+  document.addEventListener('click', function(e) {
+    if (!navList.contains(e.target) && !navToggle.contains(e.target)) {
+      navList.style.display = 'none';
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="app.js"></script>
 </body>
